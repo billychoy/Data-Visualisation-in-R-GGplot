@@ -1,0 +1,66 @@
+---
+title: "assignment02_100360977_Q4"
+author: "Billy Choy"
+date: '2022-02-22'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+##Exercise 4: Tidying data with {tidyr} --------------------------------"
+#Read departure_bay_temperature csv
+library('readr')
+tidy <- read_csv("departure_bay_temperature.csv", skip = 2)
+
+#Check is Null, no null data is dataset
+sum(is.null(tidy))
+
+#Check NAs, there are number of NA appearance in the dataset
+sum(is.na(tidy))
+
+#We drop those data as we cannot study the changes on NA data
+# 13 rows dropped
+tidy1 <- drop_na(tidy)
+tidy1$Year <- as.factor(tidy1$Year)
+
+is.na(tidy1)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library('ggplot2')
+
+#monName <- c("Jan", "Feb", "Mar", "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+#for (i in monName) { print(
+#      ggplot(tidy1, aes(x = Year, y = i, group = 1))
+#      + geom_line(color = "#00AFBB", size = 2)
+#      )
+#}
+#Plot the monthly trend graph
+ggplot(tidy1, aes(x = Year, y = Jan, group = 1)) + geom_line(color = "#00AFBB", size = 2)
+ggplot(tidy1, aes(x = Year, y = Feb, group = 1)) + geom_line(color = "#800080", size = 2)
+ggplot(tidy1, aes(x = Year, y = Mar, group = 1)) + geom_line(color = "#00008B", size = 2)
+ggplot(tidy1, aes(x = Year, y = Apr, group = 1)) + geom_line(color = "#BCC6CC", size = 2)
+ggplot(tidy1, aes(x = Year, y = May, group = 1)) + geom_line(color = "#ADD8E6", size = 2)
+ggplot(tidy1, aes(x = Year, y = Jul, group = 1)) + geom_line(color = "#07FFD4", size = 2)
+ggplot(tidy1, aes(x = Year, y = Aug, group = 1)) + geom_line(color = "#00FF00", size = 2)
+ggplot(tidy1, aes(x = Year, y = Sep, group = 1)) + geom_line(color = "#969083", size = 2)
+ggplot(tidy1, aes(x = Year, y = Oct, group = 1)) + geom_line(color = "#7FFFD4", size = 2)
+ggplot(tidy1, aes(x = Year, y = Nov, group = 1)) + geom_line(color = "#FF80AA", size = 2)
+ggplot(tidy1, aes(x = Year, y = Dec, group = 1)) + geom_line(color = "#C4AEAD", size = 2)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
